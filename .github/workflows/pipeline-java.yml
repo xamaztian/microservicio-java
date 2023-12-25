@@ -1,0 +1,48 @@
+name: CI
+on:
+    push:
+    
+    workflow_dispatch:
+
+jobs:
+
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - name: build
+              run: |
+                chmod +x gradlew
+                ./gradlew build
+                ls -ltr
+
+            - name: SonarCloud Analysis
+              run: |
+                chmod +x gradlew
+                ./gradlew build sonar Dsonar.token=${{ secrets.SECRET_SONARCLOUD }}
+
+            - name: Docker Login
+              uses: docker/login-action@v2.2.0
+              with:
+                  username: ${{ secrets.DOCKER_USERNAME }}
+                  password: ${{ secrets.DOCKER_PASSWORD }}
+
+            - name: Docker Build
+              run: |
+                docker build --tag xamaztian/microservicio-java:latest .
+                docker images
+
+            - name: Docker Push
+              run: |
+                docker push xamaztian/microservicio-java:latest
+                docker images
+            
+    deploy:
+        runs on: self-hosted
+        needs: build
+        steps:
+         - uses: actions/checkout@v3
+         - name: Deploy a Minikube local
+           run: |
+             kubectl apply -f deployment.yml
+
