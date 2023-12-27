@@ -43,12 +43,12 @@ jobs:
                 docker push xamaztian/microservicio-java:latest
                 docker images
             
-    # deploy:
-    #     runs-on: self-hosted
-    #     needs: build
-    #     steps:
-    #         - uses: actions/checkout@v3
-    #         - name: Deploy a Minikube local
-    #           run: |
-    #             kubectl apply -f deployment.yml
+    deploy:
+        runs-on: self-hosted
+        needs: build
+        steps:
+            - uses: actions/checkout@v3
+            - name: Deploy a Minikube local
+              run: |
+                kubectl apply -f deployment.yml
 
