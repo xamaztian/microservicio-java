@@ -57,7 +57,8 @@ test {
     enabled = true
   }
   useJUnitPlatform()
+  finalizedBy jacocoTestReport
 }
 
-//check.dependsOn jacocoTestReport
+check.dependsOn jacocoTestReport
 
