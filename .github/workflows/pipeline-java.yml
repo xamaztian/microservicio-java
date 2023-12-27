@@ -40,6 +40,7 @@ jobs:
                 cp $GITHUB_WORKSPACE/build/libs/*.jar .
                 chmod 777 *.jar
                 ls -lt
+                ./gradlew check
 
             - name: Docker Build
               run: |
