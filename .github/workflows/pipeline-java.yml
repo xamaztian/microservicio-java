@@ -38,11 +38,11 @@ jobs:
                 docker images
             
     deploy:
-        runs on: self-hosted
+        runs-on: self-hosted
         needs: build
         steps:
-         - uses: actions/checkout@v3
-         - name: Deploy a Minikube local
-           run: |
-             kubectl apply -f deployment.yml
+            - uses: actions/checkout@v3
+            - name: Deploy a Minikube local
+              run: |
+                kubectl apply -f deployment.yml
 
