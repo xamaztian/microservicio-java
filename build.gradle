@@ -3,6 +3,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 	id "org.sonarqube" version "4.2.1.3168"
+  id "jacoco"
 }
 
 group = 'com.example'
@@ -27,6 +28,20 @@ sonar {
   }
 }
 
+jacoco {
+  toolVersion = "0.8.9"
+}
+
+jacocoTestReport {
+  depends on test
+  reports {
+    xml.enabled true
+  }
+}
+
 test {
+  jacoco {
+    enabled = true
+  }
   useJUnitPlatform()
 }
