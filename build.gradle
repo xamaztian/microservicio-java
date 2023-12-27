@@ -25,6 +25,7 @@ sonar {
     property "sonar.organization", "xamaztian"
     property "sonar.host.url", "https://sonarcloud.io/"
     property "sonar.projectName", "microservicio-java"
+    property "sonar.java.coveragePlugin", "jacoco"
   }
 }
 
@@ -36,6 +37,8 @@ jacocoTestReport {
   dependsOn test
   reports {
     xml.enabled true
+    html.enabled true
+
   }
 }
 
