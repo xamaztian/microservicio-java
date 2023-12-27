@@ -42,9 +42,22 @@ jacocoTestReport {
   }
 }
 
+jacocoTestCoverageVerification {
+  violationRules {
+    rule {
+      limit {
+        minimum = 0.8
+      }
+    }
+  }
+}
+
 test {
   jacoco {
     enabled = true
   }
   useJUnitPlatform()
 }
+
+//check.dependsOn jacocoTestReport
+
