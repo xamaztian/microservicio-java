@@ -92,9 +92,9 @@ jobs:
                 
                 $JMETER_PATH = "C:\Sources\devops-fundamentos-v6\apache-jmeter-5.6.2\bin\jmeter.bat"
 
-                $TEST_PLAN = "\Jmeter\TestPlanDevops6.jmx"
+                $TEST_PLAN = ".\Jmeter\TestPlanDevops6.jmx"
 
-                $RESULT_PATH = "\Jmeter\Results.jtl"
+                $RESULT_PATH = ".\Jmeter\Results.jtl"
 
                 & $JMETER_PATH -n -t $TEST_PLAN -l $RESULTS_PATH -e -o htmlReport/
 
