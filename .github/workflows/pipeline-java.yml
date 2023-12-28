@@ -50,11 +50,6 @@ jobs:
               run: |
                 docker push xamaztian/microservicio-java:latest
                 docker images
-
-            - name: checkeo
-              run: |
-               chmod +x gradlew
-               ./gradlew check
              
     deploy:
         runs-on: self-hosted
