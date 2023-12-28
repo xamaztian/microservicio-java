@@ -59,6 +59,3 @@ test {
   useJUnitPlatform()
   finalizedBy jacocoTestReport
 }
-
-check.dependsOn jacocoTestReport
-
