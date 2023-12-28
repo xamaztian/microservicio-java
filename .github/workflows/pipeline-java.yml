@@ -74,7 +74,14 @@ jobs:
             - name: Test the deployment
               shell: powershell
               run: |
-                newman run ./Postman/Base.postman_collection.json
+                newman run ./Postman/Base.postman_collection_test.json --reporters cli,html --reporter-html-export "report.html"
+                $status = $LASTEXITCODE
+
+                if ($status -ne 0) {
+                    throw "Tests failed"
+                    exit 1
+                }
+                
                 
                 
 
