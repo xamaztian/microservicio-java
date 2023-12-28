@@ -68,18 +68,18 @@ jobs:
               shell: powershell
               run: |
                 kubectl apply -f deployment.yml
-                $POD_NAME = kubectl get pods -l app=microservicio-java -o jsonpath="{.items[0].metadata.name}"
-                Start-Job -ScriptBlock { kubectl port-forward $using:POD_NAME 8080:8080 }
-            
+                
             - name: Test the deployment
               shell: powershell
               run: |
-                Get-Job
+                $POD_NAME = kubectl get pods -l app=microservicio-java -o jsonpath="{.items[0].metadata.name}"
+                Start-Job -ScriptBlock { kubectl port-forward $using:POD_NAME 8080:8080 }
+
                 newman run ./Postman/Base.postman_collection_test.json
                 $status = $LASTEXITCODE
 
                 if ($status -ne 0) {
-                    throw "Tests falló"
+                    throw "Tests fallados"
                     exit 1
                 }
                 
