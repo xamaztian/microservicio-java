@@ -29,11 +29,6 @@ jobs:
               with:
                scanMetadataReportFile: build/sonar/report-task.txt   
 
-            - name: SonarCloud Analysis and JaCoCo Check
-              run: |
-                chmod +x gradlew
-                ./gradlew clean check jacocoTestReport sonar -D
-
             - name: Docker Login
               uses: docker/login-action@v2.2.0
               with:
