@@ -29,12 +29,6 @@ jobs:
               with:
                scanMetadataReportFile: build/sonar/report-task.txt   
 
-    docker:
-        runs-on: ubuntu-latest
-        needs: build
-        steps:
-            - uses: actions/checkout@v3
-
             - name: Docker Login
               uses: docker/login-action@v2.2.0
               with:
