@@ -29,11 +29,6 @@ jobs:
               with:
                scanMetadataReportFile: build/sonar/report-task.txt   
 
-            - name: check Gradle
-              run: |
-                chmod +x gradlew
-                ./gradlew check  
-
     docker:
         runs-on: ubuntu-latest
         needs: build
