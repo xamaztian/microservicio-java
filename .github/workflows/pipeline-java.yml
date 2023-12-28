@@ -16,12 +16,6 @@ jobs:
                 ./gradlew build
                 ls -ltr
     
-    sonarcloud:
-        needs: build
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v3
-
             - name: SonarCloud Analysis
               run: |
                 chmod +x gradlew
@@ -42,12 +36,7 @@ jobs:
               run: |
                 chmod +x gradlew
                 ./gradlew check jacocoTestReport sonar -Dsonar.token=${{ secrets.SECRET_SONARCLOUD }} --info --stacktrace 
-    
-    docker:
-        needs: sonarcloud
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v3
+
             - name: Docker Login
               uses: docker/login-action@v2.2.0
               with:
@@ -72,19 +61,14 @@ jobs:
              
     deploy:
         runs-on: self-hosted
-        needs: docker
+        needs: build
         steps:
             - uses: actions/checkout@v3
             - name: Deploy a Minikube local
               shell: powershell
               run: |
                 kubectl apply -f deployment.yml
-    
-    test:
-        runs-on: self-hosted
-        needs: deploy
-        steps:
-            - uses: actions/checkout@v3
+                
             - name: Test the deployment
               shell: powershell
               run: |
@@ -98,7 +82,7 @@ jobs:
                     throw "Tests fallados"
                     exit 1
                 }
-
+                
 
 
                 
