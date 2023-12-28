@@ -100,8 +100,16 @@ jobs:
 
                 Get-Content $RESULT_PATH
 
-
+                $jsonContent = Get-Content -Path "./htmlReport/statistics.json" | ConvertFrom-Json
                 
+                $errorCount = $jsonContent.Total.errorCount
+                
+                if ($errorCount -ne 0) {
+                    Write-Error "Fallo en la verificación: Se encontraron $errorCount errores totales."
+                    exit 1 
+                } else {
+                    Write-Host "Verificación exitosa: No se encontraron errores en las pruebas de JMeter."
+                }
 
 
                 
