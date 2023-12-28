@@ -96,9 +96,7 @@ jobs:
 
                 $RESULT_PATH = ".\Jmeter\Results.jtl"
 
-                & $JMETER_PATH -n -t $TEST_PLAN -l $RESULTS_PATH -e -o htmlReport/
-
-                dir
+                & $JMETER_PATH -n -t $TEST_PLAN -l $RESULT_PATH -e -o htmlReport/
 
                 Get-Content $RESULTS_PATH
 
