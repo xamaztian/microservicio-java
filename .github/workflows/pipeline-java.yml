@@ -34,6 +34,11 @@ jobs:
                 chmod +x gradlew
                 ./gradlew check  
 
+    docker:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+
             - name: Docker Login
               uses: docker/login-action@v2.2.0
               with:
