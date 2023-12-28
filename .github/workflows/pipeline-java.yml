@@ -98,7 +98,7 @@ jobs:
 
                 & $JMETER_PATH -n -t $TEST_PLAN -l $RESULTS_PATH -e -o htmlReport/
 
-                ls
+                dir
 
                 Get-Content $RESULTS_PATH
 
