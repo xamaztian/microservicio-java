@@ -32,7 +32,7 @@ jobs:
             - name: SonarCloud Analysis and JaCoCo Check
               run: |
                 chmod +x gradlew
-                ./gradlew clean check jacocoTestReport sonar -Dsonar.token=${{ secrets.SECRET_SONARCLOUD }} --info --stacktrace 
+                ./gradlew check jacocoTestReport sonar -Dsonar.token=${{ secrets.SECRET_SONARCLOUD }} --info --stacktrace 
 
             - name: Docker Login
               uses: docker/login-action@v2.2.0
