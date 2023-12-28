@@ -67,6 +67,7 @@ jobs:
             - name: Deploy a Minikube local
               run: |
                 kubectl apply -f deployment.yml
-                POD_NAME=$(kubectl get pod -l app=microservicio-java-deployment -o jsonpath="{.items[0].metadata.name}")
+                $POD_NAME = kubectl get pods -l app=microservicio-java-deployment -o jsonpath="{.items[0].metadata.name}"
                 kubectl port-forward $POD_NAME 8080:8080
+
 
