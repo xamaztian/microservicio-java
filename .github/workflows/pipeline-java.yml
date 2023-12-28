@@ -74,11 +74,12 @@ jobs:
             - name: Test the deployment
               shell: powershell
               run: |
+                Get-Job
                 newman run ./Postman/Base.postman_collection_test.json
                 $status = $LASTEXITCODE
 
                 if ($status -ne 0) {
-                    throw "Tests failed"
+                    throw "Tests falló"
                     exit 1
                 }
                 
