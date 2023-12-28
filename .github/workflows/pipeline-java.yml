@@ -82,6 +82,21 @@ jobs:
                     throw "Tests fallados"
                     exit 1
                 }
+            
+            - name: Test with jmeter
+              shell: powershell
+              run: |
+                $JMETER_PATH = "C:\Sources\devops-fundamentos-v6\apache-jmeter-5.6.2\bin\jmeter.bat"
+
+                $TEST_PLAN = "\Jmeter\TestPlanDevops6.jmx"
+
+                $RESULT_PATH = "\Jmeter\Results.jtl"
+
+                & $JMETER_PATH -n -t $TEST_PLAN -l $RESULTS_PATH -e -o htmlReport/
+
+                Get-Content $RESULTS_PATH
+
+
                 
 
 
